@@ -36,6 +36,7 @@
 /* Private variables ---------------------------------------------------------*/
 GPIO_InitTypeDef GPIO_InitStructure;
 
+volatile uint32_t timeout=0;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -62,6 +63,11 @@ int main(void)
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+  //Systick Configuration
+  SysTick->LOAD = 9000000;
+  SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
+  SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
+
   /* To achieve GPIO toggling maximum frequency, the following  sequence is mandatory.
      You can monitor PA0 or PA2 on the scope to measure the output signal.
      If you need to fine tune this frequency, you can add more GPIO set/reset
@@ -70,12 +76,24 @@ int main(void)
   while (1)
   {
     volatile int i;
-    /* Set PA0 and PA2 */
-    GPIOA->BSRR = 0x00000003;
-    for(i=1000000;i>0;i--);
-    /* Reset PA0 and PA2 */
-    GPIOA->BRR  = 0x00000003;
-    for(i=1000000;i>0;i--);
+    if(timeout)
+    {
+      /* Set PA0 and PA2 */
+      GPIOA->BSRR = 0x00000002;
+      for(i=1000000;i>0;i--);
+      /* Reset PA0 and PA2 */
+      GPIOA->BRR  = 0x00000002;
+      for(i=1000000;i>0;i--);
+    }
+    else
+    {
+      /* Set PA0 and PA2 */
+      GPIOA->BSRR = 0x00000001;
+      for(i=1000000;i>0;i--);
+      /* Reset PA0 and PA2 */
+      GPIOA->BRR  = 0x00000001;
+      for(i=1000000;i>0;i--);
+    }
   }
 }
 
