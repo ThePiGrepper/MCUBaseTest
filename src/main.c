@@ -37,6 +37,32 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
+static __IO uint32_t TimingDelay;
+/**
+  * @brief  Inserts a delay time.
+  * @param  nTime: specifies the delay time length, in milliseconds.
+  * @retval None
+  */
+void Delay(__IO uint32_t nTime)
+{
+  TimingDelay = nTime;
+
+  while(TimingDelay != 0);
+}
+
+/**
+  * @brief  Decrements the TimingDelay variable.
+  * @param  None
+  * @retval None
+  */
+void TimingDelay_Decrement(void)
+{
+  if (TimingDelay != 0)
+  {
+    TimingDelay--;
+  }
+}
+
 /**
   * @brief  Main program.
   * @param  None
@@ -60,6 +86,10 @@ int main(void)
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
+  if (SysTick_Config(SystemCoreClock / 5000))
+  {
+    while(1);
+  }
 
   /* To achieve GPIO toggling maximum frequency, the following  sequence is mandatory.
      You can monitor PA5 on the scope to measure the output signal.
@@ -71,10 +101,10 @@ int main(void)
     volatile int i;
     /* Set PA5 */
     GPIOA->BSRRL = 0x0020;
-    for(i=1000000;i>0;i--);
+    Delay(1000);
     /* Reset PA5 */
     GPIOA->BSRRH  = 0x0020;
-    for(i=1000000;i>0;i--);
+    Delay(1000);
   }
 }
 
