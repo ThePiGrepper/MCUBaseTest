@@ -97,13 +97,13 @@ int main(void)
 
   /* GPIOD Periph clock enable */
   RCC_Configuration();
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
   /* Configure PA0 and PA2 in output pushpull mode */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
 
   /* To achieve GPIO toggling maximum frequency, the following  sequence is mandatory.
      You can monitor PA0 or PA2 on the scope to measure the output signal.
@@ -114,10 +114,10 @@ int main(void)
   {
     volatile int i;
     /* Set PA0 and PA2 */
-    GPIOB->BSRR = 0x00000080;
+    GPIOC->BSRR = 0x00002000;
     for(i=1000000;i>0;i--);
     /* Reset PA0 and PA2 */
-    GPIOB->BRR  = 0x00000080;
+    GPIOC->BRR  = 0x00002000;
     for(i=1000000;i>0;i--);
   }
 }
