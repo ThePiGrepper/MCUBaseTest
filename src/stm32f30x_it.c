@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    GPIO/GPIO_IOToggle/stm32f4xx_it.c
+  * @file    GPIO/GPIO_IOToggle/stm32f30x_it.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version
+  * @date
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.
@@ -28,9 +28,9 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_it.h"
+#include "stm32f30x_it.h"
 
-/** @addtogroup STM32F4xx_StdPeriph_Examples
+/** @addtogroup STM32F30x_StdPeriph_Examples
   * @{
   */
 
@@ -147,10 +147,10 @@ void SysTick_Handler(void)
 }
 
 /******************************************************************************/
-/*                 STM32F4xx Peripherals Interrupt Handlers                   */
+/*                 STM32F30x Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s).    */
+/*  file (startup_stm32f302x8.s).                                             */
 /******************************************************************************/
 
 /**
