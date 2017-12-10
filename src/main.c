@@ -21,6 +21,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f30x.h"
+#include <stdio.h>
 
 /** @addtogroup STM32F30x_StdPeriph_Examples
   * @{
@@ -36,6 +37,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+void retarget_init(void);
 
 /**
   * @brief  Main program.
@@ -53,7 +55,8 @@ int main(void)
   GPIO_InitTypeDef GPIO_InitStructure;
   /* GPIOB Periph clock enable */
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
-
+  retarget_init();
+  printf("Testing retargeting ...\n");
   /* Configure PB13 in output pushpull mode */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
