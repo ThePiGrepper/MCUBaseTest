@@ -47,15 +47,15 @@ build $builddir/stm32f10x_gpio.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32
 #build $builddir/stm32f10x_sdio.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_sdio.c
 #build $builddir/stm32f10x_can.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_can.c
 #build $builddir/stm32f10x_spi.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c
-#build $builddir/stm32f10x_crc.o: CC $stm32f10x_dcmi/STM32F10x_StdPeriph_Driver/src/stm32f10x_crc.c
-#build $builddir/stm32f10x_dma.o: CC $stm32f10x_hash_sha1/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c
-#build $builddir/stm32f10x_i2c.o: CC $stm32f10x_spi/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c
-#build $builddir/stm32f10x_iwdg.o: CC $stm32f10x_syscfg/STM32F10x_StdPeriph_Driver/src/stm32f10x_iwdg.c
-#build $builddir/stm32f10x_tim.o: CC $stm32f10x_cryp_aes/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c
-#build $builddir/stm32f10x_pwr.o: CC $stm32f10x_tim/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c
-#build $builddir/stm32f10x_usart.o: CC $stm32f10x_cryp/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c
-#build $builddir/stm32f10x_fsmc.o: CC $stm32f10x_pwr/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c
-#build $builddir/stm32f10x_wwdg.o: CC $stm32f10x_cryp_des/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c
+#build $builddir/stm32f10x_crc.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_crc.c
+#build $builddir/stm32f10x_dma.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c
+#build $builddir/stm32f10x_i2c.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c
+#build $builddir/stm32f10x_iwdg.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_iwdg.c
+#build $builddir/stm32f10x_tim.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c
+#build $builddir/stm32f10x_pwr.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c
+#build $builddir/stm32f10x_usart.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c
+#build $builddir/stm32f10x_fsmc.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c
+#build $builddir/stm32f10x_wwdg.o: CC $stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c
 
 build $builddir/$project_name.elf: CLINK $builddir/main.o $
                                       $builddir/stm32f10x_it.o $
