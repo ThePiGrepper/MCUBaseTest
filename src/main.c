@@ -20,9 +20,9 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
+#include "stm32f30x.h"
 
-/** @addtogroup STM32F4xx_StdPeriph_Examples
+/** @addtogroup STM32F30x_StdPeriph_Examples
   * @{
   */
 
@@ -46,34 +46,34 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured,
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f401xx.s) before to branch to application main.
+       file (startup_stm32f302x8.s) before to branch to application main.
        To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f10x.c file
+       system_stm32f30x.c file
      */
   GPIO_InitTypeDef GPIO_InitStructure;
-  /* GPIOA Periph clock enable */
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+  /* GPIOB Periph clock enable */
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
 
-  /* Configure PA5 in output pushpull mode */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
-  GPIO_InitStructure.GPIO_Speed =GPIO_Medium_Speed;
+  /* Configure PB13 in output pushpull mode */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
 
   /* To achieve GPIO toggling maximum frequency, the following  sequence is mandatory.
-     You can monitor PA5 on the scope to measure the output signal.
+     You can monitor PB13 on the scope to measure the output signal.
      If you need to fine tune this frequency, you can add more GPIO set/reset
      cycles to minimize more the infinite loop timing.
      This code needs to be compiled with high speed optimization option.  */
   while (1)
   {
     volatile int i;
-    /* Set PA5 */
-    GPIOA->BSRRL = 0x0020;
+    /* Set PB13 */
+    GPIOB->BSRR = 0x20000000;
     for(i=1000000;i>0;i--);
-    /* Reset PA5 */
-    GPIOA->BSRRH  = 0x0020;
+    /* Reset PB13 */
+    GPIOB->BSRR = 0x00002000;
     for(i=1000000;i>0;i--);
   }
 }
